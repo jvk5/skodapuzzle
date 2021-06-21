@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skoda Puzzle</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="//db.onlinewebfonts.com/c/007f636c4af6a332a98f32cc3cee8cb4?family=Eurostile+Extended+#2" rel="stylesheet" type="text/css"/>
+    <link href="css/image-puzzle.css" rel="stylesheet" />
+    <script src="js/image-puzzle.js"></script>
+    <link rel="icon" href="./images/logo.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />  
+    <script src="js/DragDropTouch.js"></script>
+</head>
+<body style="background: url(./images/bg.jpg);">
+    <div id="collage" style="margin-top: 0px; ">
+    <div>
+       <img src="./images/bar.png" alt="" width="100%" class="responsive">
+    </div>
+        <div id="playPanel" style="padding:5px;display:none; margin-top: 40px;">
+            
+            <div style="display:inline-block; margin:auto; width:100%; vertical-align:top;">
+                <ul id="sortable" class="sortable"></ul>
+                <div id="actualImageBox">
+                    <div id="stepBox">
+                        <div>Steps:</div>
+                        <div id="stepCount" class="stepCount">0</div>
+                    </div>
+                    <div id="timeBox">
+                        Time Taken: <span id="timerPanel"></span> secs
+                    </div>
+                    <img id="actualImage" />
+                    <div style="font-size: 16px;">Re-arrange to create a picture like this.</div>
+                    <p id="levelPanel" >
+                         <input type="radio" name="level" id="easy" checked="checked" value="3" onchange="imagePuzzle.startGame(images, this.value);"
+                        /> <label for="easy"></label>
+                    </p>
+                    <div>
+                        <button id="newPhoto" type="button" class="btn" style="
+                         background-color: #38963b; 
+                        border: none;
+                        color: white;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;"
+                        onclick="restart();">Shuffle</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="gameOver" style="display:none;">
+            <div style="background-color: #00800d; opacity: .8; padding: 5px 10px 20px 10px; text-align: center; ">
+                <h2 style="text-align:center">Game Over!!</h2>
+                Congratulations!! <br /> You have completed this picture.
+                <br /> Steps: <span id="stepCount" class="stepCount">0</span> steps.
+                <br /> Time Taken: <span class="timeCount">0</span> seconds<br />
+                <div>
+                    <button type="button" onclick="window.location.reload(true);">Play Again</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            var images = [
+                { src: "./images/oct.png"},
+            ];
+            // var images = document.createElement("imags");
+            //     images.src = "./images/oct.png";
+            window.onload = function () {
+                var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value');
+                imagePuzzle.startGame(images, gridSize);
+            };
+            function restart() {
+                var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value');
+                imagePuzzle.startGame(images, gridSize);
+            }
+        </script>
+    </div>  
+</body>
+</html>
